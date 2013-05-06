@@ -43,7 +43,7 @@ body {
     color: black;
 }
 
-.details, .none {
+.details, .none, .addform {
     font-weight: bold;
     font-size: 2em;
     border-style: dashed none dashed none;
@@ -62,7 +62,7 @@ body {
     text-align: center;
 }
 
-.inc, .toggle {
+.inc, .toggle, .showadd {
     cursor: pointer;
 }
 
@@ -73,3 +73,15 @@ body {
 .details input {
     vertical-align: middle;
 }
+
+.addform {
+    font-size: 1.2em;
+    padding: 10px;
+    text-align: left;
+    line-height: 150%;
+}
+
+.addform label {
+    display: inline-block;
+    width: 175px;
+}​

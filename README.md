@@ -6,7 +6,7 @@ As an effort to learn the Meteor JavaScript framework, I'm checking out the [Lea
 
 2.) Make a button that resets everyone's score to a random number. --> **DONE**
 
-3.) Implement a way to add and remove scientists from the leaderboard. --> **TODO**
+3.) Implement a way to add and remove scientists from the leaderboard. --> **DONE**
 
 Currently previewing on [http://ewall-scoreboard.meteor.com/](http://ewall-scoreboard.meteor.com/)
 

@@ -15,19 +15,30 @@
     {{/each}}
   </div>
 
-  {{#if selected_name}}
+  {{#if nowShowing "none"}}
+  <div class="none">Click a player to select</div>
+  {{/if}}
+
+  {{#if nowShowing "player"}}
   <div class="details">
     <div class="name">{{selected_name}}</div>
     <input type="button" class="inc" value="Give 5 points" /><br />
+    <input type="button" class="del" value="Remove this player" /><br />
   </div>
   {{/if}}
 
-  {{#unless selected_name}}
-  <div class="none">Click a player to select</div>
-  {{/unless}}
+  {{#if nowShowing "addform"}}
+  <div class="addform">
+    <label>Player Name:</label>
+    <input type="text" size="30" id="newname"></input><br />
+    <label>Starting Score:</label>
+    <input type="text" size="3" id="newscore"></input>
+    <input type="submit" value="Submit" class="submit">
+  </div>
+  {{/if}}
 
   <div class="extras">
-    <input type="button" class="toggle" value="Toggle Sorting" /> | <input type="button" class="rescore" value="Randomize Scores" />
+    <input type="button" class="toggle" value="Toggle Sorting" /> | <input type="button" class="rescore" value="Randomize Scores" /> | <input type="button" class="showaddform" value="Add new player">
   </div>
 </template>
 

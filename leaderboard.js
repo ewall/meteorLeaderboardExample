@@ -1,8 +1,6 @@
 // ewall's customized leaderboard.js
 
-// Done: make button to toggle sort method
-// Done: make button to randomize the scores
-// ToDo: add a way to add/remove scientists
+// ToDo: input validation?
 // ToDo: try out Collection.Allow/Deny rules?
 
 // Set up a collection to contain player information. On the server,
@@ -11,6 +9,12 @@
 Players = new Meteor.Collection("players");
 
 if (Meteor.isClient) {
+
+  Session.set("nowShowing", "none");
+
+  Template.leaderboard.nowShowing = function (show) {
+    return Session.get("nowShowing") === show;
+  };
 
   Session.set("sort_toggle", 0);
 
@@ -39,12 +43,31 @@ if (Meteor.isClient) {
       Players.find().forEach( function (player) {
         Players.update( { _id: player['_id'] }, {$set: {score: Math.floor(Random.fraction()*10)*5}});
       })
+    },
+    'click input.del': function () {
+      if (confirm('Are you sure you want to delete this player?')) {
+        Players.remove(Session.get("selected_player"));
+        Session.set("selected_player", "");
+        Session.set("nowShowing", "none");
+      }
+    },
+    'click input.showaddform': function () {
+      Session.set("selected_player", "");
+      Session.set("nowShowing", "addform");
+    },
+    'click input.submit': function () {
+      var newName = document.getElementById("newname").value;
+      var newScore = parseInt( document.getElementById("newscore").value );
+      var newPlayer = Players.insert({name: newName, score: (newScore > 0) ? newScore : 0});
+      Session.set("selected_player", newPlayer);
+      Session.set("nowShowing", "player");
     }
   });
 
   Template.player.events({
     'click': function () {
       Session.set("selected_player", this._id);
+      Session.set("nowShowing", "player");
     }
   });
 }
